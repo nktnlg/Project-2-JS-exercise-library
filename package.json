@@ -1,0 +1,19 @@
+{
+  "name": "project-2-js-exercise-library",
+  "version": "1.0.0",
+  "description": "JS exercises library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nktnlg/Project-2-JS-exercise-library.git"
+  },
+  "author": "nktnlg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nktnlg/Project-2-JS-exercise-library/issues"
+  },
+  "homepage": "https://github.com/nktnlg/Project-2-JS-exercise-library#readme"
+}
