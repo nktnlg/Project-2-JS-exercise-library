@@ -1,9 +1,10 @@
+import ExercisesMain from './Components/ExercisesMain';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <p>react works!</p>
+      <ExercisesMain/>
     </div>
   );
 }
