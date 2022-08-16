@@ -8,4 +8,5 @@ const ExerciseLabel = ({label}) => {
                             </Button>
     )
 }
-        export default ExerciseLabel;
+
+export default ExerciseLabel;
