@@ -1,5 +1,6 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Code, Flex, Heading, Input, Link, Spacer, Stack, Text, Wrap, WrapItem } from '@chakra-ui/react';
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Code, Flex, Heading, Input, Link, Spacer, Text, Wrap, WrapItem } from '@chakra-ui/react';
 import data from '../MockDB/exercises';
+import ExerciseLabel from './ExerciseLabel';
 
 
 const labels = data.concat(data)
@@ -87,9 +88,7 @@ const ExercisesMain = () => {
                     <Wrap>
                         {labels.map((label)=>(
                             <WrapItem>
-                            <Button colorScheme='telegram' w={250} h={90} fontSize='xl'>
-                                {label.title}
-                            </Button>
+                            <ExerciseLabel label={label}/>
                         </WrapItem>
                         ))}
                     </Wrap>
