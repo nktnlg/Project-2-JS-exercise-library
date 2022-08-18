@@ -1,10 +1,13 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Flex, Input, Textarea } from "@chakra-ui/react";
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Flex, Input, Textarea, Text} from "@chakra-ui/react";
 import { useState } from "react";
 import { Markup } from "react-render-markup";
 
 const Exercise = ({selected}) => {
 
+ 
     
+    
+    const [outputAnswer, setOutputAnswer] = useState('');
     const [inputVal, setInputVal] = useState('');
     const [outputVal, setOutputVal] = useState('');
 
@@ -13,10 +16,11 @@ const Exercise = ({selected}) => {
     };
 
     const onTry = () => {
-        setOutputVal(inputVal)
-        setInputVal('')
-        document.getElementById("JS-exerciseCurrent").removeAttribute("disabled")
-        document.getElementById("JS-exerciseCurrent").focus()
+        setOutputVal(inputVal);
+        setOutputAnswer(selected.code(inputVal));
+        setInputVal('');
+        document.getElementById("JS-exerciseCurrent").removeAttribute("disabled");
+        document.getElementById("JS-exerciseCurrent").focus();
     };
 
     const disableOutput = ()=>{
@@ -48,9 +52,7 @@ const Exercise = ({selected}) => {
                             onClick={()=>{disableOutput()}}/>
                     </Flex>
                     <Textarea id='JS-exerciseOutput'
-                            value='value'
-                            //onChange={handleInputChange}
-                            placeholder="Here is a sample placeholder"
+                            value={outputAnswer}
                             size="sm"
                             maxH={350}
                             bg={'rgb(226, 232, 240)'}

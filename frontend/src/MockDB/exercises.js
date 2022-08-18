@@ -45,7 +45,30 @@ const data = [
           
             <span class="cm-keyword">if</span> (<span class="cm-variable-2">count</span>[<span class="cm-number">0</span>]<span class="cm-operator">===</span><span class="cm-number">0</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable-2">count</span>[<span class="cm-number">1</span>]<span class="cm-operator">===</span><span class="cm-number">0</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable-2">count</span>[<span class="cm-number">2</span>]<span class="cm-operator">===</span><span class="cm-number">0</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-operator">!</span><span class="cm-variable-2">fail</span>) {<span class="cm-keyword">return</span> <span class="cm-atom">true</span>} <span class="cm-keyword">else</span>{<span class="cm-keyword">return</span> <span class="cm-atom">false</span>}
         };</code></pre>
-        `
+        `,
+        code(braces) {
+            let count = [0,0,0];
+            let stat = [];
+            let fail = false;
+            let arr = braces.split('');
+            
+            for (let v of arr) {
+                  if (v === '(' ){count[0]++; stat.push('1')};
+                  if (v === '[' ){count[1]++; stat.push('2')};
+                  if (v === '{' ){count[2]++; stat.push('3')};
+                  if (v === ')' ){
+                    if (count[0]>0 && stat[stat.length-1]=='1'){count[0]--; stat.pop()}else{fail=true; break}
+                  };
+                  if (v === ']' ){
+                    if (count[1]>0 && stat[stat.length-1]==='2'){count[1]--; stat.pop()}else{fail=true; break}
+                  };
+                  if (v === '}' ){
+                    if (count[2]>0 && stat[stat.length-1]==='3'){count[2]--; stat.pop()}else{fail=true; break}
+                  };
+            }
+          
+            if (count[0]===0 && count[1]===0 && count[2]===0 && !fail) {return true} else{return false}
+        }
     },
     {
         title: "First non-repeating character",
