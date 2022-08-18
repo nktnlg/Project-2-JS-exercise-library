@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Spacer, Wrap, WrapItem } from '@chakra-ui/react';
+import { Box, Flex, Heading, Spacer, Wrap, WrapItem } from '@chakra-ui/react';
 import { useState } from 'react';
 import data from '../MockDB/exercises';
 import Exercise from './Exercise';
@@ -16,6 +16,7 @@ const ExercisesMain = () => {
     //HTML
     return (
         <>
+        {/* Title + Exercise name */}
             <Box h={'15%'}>
             <Heading as='h1' size='2xl' p={2}>
                 JS Exercises
@@ -25,11 +26,12 @@ const ExercisesMain = () => {
             </Heading>):<></>}
             </Box>
 
+        {/* Explanation  + answer */}
             {selected? (<Box borderBottom='2px' borderColor='gray.200' h={'60%'}>
                 <Flex>
                     <Spacer/>
                     {/* Left Block: */}
-                    <Exercise selected={selected}/>
+                    <Exercise selected={selected} />
 
                     {/* Center Line: */}
                     <Spacer borderRight='2px' borderColor='gray.200'/>
@@ -40,12 +42,13 @@ const ExercisesMain = () => {
                     <Spacer/>
                 </Flex>
             </Box>):(<></>)}
-            
+
+        {/* Exercises labels */}
             <Box p={5} overflowY={"scroll"} h={labelsHeight}>
                 {exercises ? (
                     <Wrap>
                         {exercises.map((label)=>(
-                            <WrapItem onClick={()=>{setSelected(label); setLabelsHeight('25%')}}>
+                            <WrapItem p={6} onClick={()=>{setSelected(label); setLabelsHeight('25%')}}>
                             <ExerciseLabel label={label}/>
                         </WrapItem>
                         ))}

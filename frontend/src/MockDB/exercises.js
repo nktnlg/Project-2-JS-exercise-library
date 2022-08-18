@@ -1,3 +1,5 @@
+//https://hindityping.info/converter/text-to-html/
+
 const data = [
     {
         title: "Valid Braces",
@@ -18,7 +20,32 @@ const data = [
         source: {
             short: 'codewars',
             url: 'https://www.codewars.com/kata/5277c8a221e209d3f6000b56'
-        }
+        },
+        answer: `
+        <pre><code class="mb-5px" data-language="javascript"><span class="cm-keyword">function</span> <span class="cm-def">validBraces</span>(<span class="cm-def">braces</span>){
+            <span class="cm-keyword">let</span> <span class="cm-def">count</span> <span class="cm-operator">=</span> [<span class="cm-number">0</span>,<span class="cm-number">0</span>,<span class="cm-number">0</span>];
+            <span class="cm-keyword">let</span> <span class="cm-def">stat</span> <span class="cm-operator">=</span> [];
+            <span class="cm-keyword">let</span> <span class="cm-def">fail</span> <span class="cm-operator">=</span> <span class="cm-atom">false</span>;
+            <span class="cm-keyword">let</span> <span class="cm-def">arr</span> <span class="cm-operator">=</span> <span class="cm-variable-2">braces</span>.<span class="cm-property">split</span>(<span class="cm-string">''</span>);
+            
+            <span class="cm-keyword">for</span> (<span class="cm-keyword">let</span> <span class="cm-def">v</span> <span class="cm-keyword">of</span> <span class="cm-variable-2">arr</span>) {
+                  <span class="cm-keyword">if</span> (<span class="cm-variable-2">v</span> <span class="cm-operator">===</span> <span class="cm-string">'('</span> ){<span class="cm-variable-2">count</span>[<span class="cm-number">0</span>]<span class="cm-operator">++</span>; <span class="cm-variable-2">stat</span>.<span class="cm-property">push</span>(<span class="cm-string">'1'</span>)};
+                  <span class="cm-keyword">if</span> (<span class="cm-variable-2">v</span> <span class="cm-operator">===</span> <span class="cm-string">'['</span> ){<span class="cm-variable-2">count</span>[<span class="cm-number">1</span>]<span class="cm-operator">++</span>; <span class="cm-variable-2">stat</span>.<span class="cm-property">push</span>(<span class="cm-string">'2'</span>)};
+                  <span class="cm-keyword">if</span> (<span class="cm-variable-2">v</span> <span class="cm-operator">===</span> <span class="cm-string">'{'</span> ){<span class="cm-variable-2">count</span>[<span class="cm-number">2</span>]<span class="cm-operator">++</span>; <span class="cm-variable-2">stat</span>.<span class="cm-property">push</span>(<span class="cm-string">'3'</span>)};
+                  <span class="cm-keyword">if</span> (<span class="cm-variable-2">v</span> <span class="cm-operator">===</span> <span class="cm-string">')'</span> ){
+                    <span class="cm-keyword">if</span> (<span class="cm-variable-2">count</span>[<span class="cm-number">0</span>]<span class="cm-operator">&gt;</span><span class="cm-number">0</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable-2">stat</span>[<span class="cm-variable-2">stat</span>.<span class="cm-property">length</span><span class="cm-operator">-</span><span class="cm-number">1</span>]<span class="cm-operator">==</span><span class="cm-string">'1'</span>){<span class="cm-variable-2">count</span>[<span class="cm-number">0</span>]<span class="cm-operator">--</span>; <span class="cm-variable-2">stat</span>.<span class="cm-property">pop</span>()}<span class="cm-keyword">else</span>{<span class="cm-variable-2">fail</span><span class="cm-operator">=</span><span class="cm-atom">true</span>; <span class="cm-keyword">break</span>}
+                  };
+                  <span class="cm-keyword">if</span> (<span class="cm-variable-2">v</span> <span class="cm-operator">===</span> <span class="cm-string">']'</span> ){
+                    <span class="cm-keyword">if</span> (<span class="cm-variable-2">count</span>[<span class="cm-number">1</span>]<span class="cm-operator">&gt;</span><span class="cm-number">0</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable-2">stat</span>[<span class="cm-variable-2">stat</span>.<span class="cm-property">length</span><span class="cm-operator">-</span><span class="cm-number">1</span>]<span class="cm-operator">===</span><span class="cm-string">'2'</span>){<span class="cm-variable-2">count</span>[<span class="cm-number">1</span>]<span class="cm-operator">--</span>; <span class="cm-variable-2">stat</span>.<span class="cm-property">pop</span>()}<span class="cm-keyword">else</span>{<span class="cm-variable-2">fail</span><span class="cm-operator">=</span><span class="cm-atom">true</span>; <span class="cm-keyword">break</span>}
+                  };
+                  <span class="cm-keyword">if</span> (<span class="cm-variable-2">v</span> <span class="cm-operator">===</span> <span class="cm-string">'}'</span> ){
+                    <span class="cm-keyword">if</span> (<span class="cm-variable-2">count</span>[<span class="cm-number">2</span>]<span class="cm-operator">&gt;</span><span class="cm-number">0</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable-2">stat</span>[<span class="cm-variable-2">stat</span>.<span class="cm-property">length</span><span class="cm-operator">-</span><span class="cm-number">1</span>]<span class="cm-operator">===</span><span class="cm-string">'3'</span>){<span class="cm-variable-2">count</span>[<span class="cm-number">2</span>]<span class="cm-operator">--</span>; <span class="cm-variable-2">stat</span>.<span class="cm-property">pop</span>()}<span class="cm-keyword">else</span>{<span class="cm-variable-2">fail</span><span class="cm-operator">=</span><span class="cm-atom">true</span>; <span class="cm-keyword">break</span>}
+                  };
+            }
+          
+            <span class="cm-keyword">if</span> (<span class="cm-variable-2">count</span>[<span class="cm-number">0</span>]<span class="cm-operator">===</span><span class="cm-number">0</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable-2">count</span>[<span class="cm-number">1</span>]<span class="cm-operator">===</span><span class="cm-number">0</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable-2">count</span>[<span class="cm-number">2</span>]<span class="cm-operator">===</span><span class="cm-number">0</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-operator">!</span><span class="cm-variable-2">fail</span>) {<span class="cm-keyword">return</span> <span class="cm-atom">true</span>} <span class="cm-keyword">else</span>{<span class="cm-keyword">return</span> <span class="cm-atom">false</span>}
+        };</code></pre>
+        `
     },
     {
         title: "First non-repeating character",
@@ -30,7 +57,16 @@ const data = [
         source: {
             short: 'codewars',
             url: 'https://www.codewars.com/kata/52bc74d4ac05d0945d00054e'
-        }
+        },
+        answer: `
+        <pre><code class="mb-5px" data-language="javascript"><span class="cm-keyword">function</span> <span class="cm-def">firstNonRepeatingLetter</span>(<span class="cm-def">s</span>) {
+            <span class="cm-variable">ns</span> <span class="cm-operator">=</span> <span class="cm-variable-2">s</span>.<span class="cm-property">toLowerCase</span>()
+            <span class="cm-keyword">for</span> (<span class="cm-keyword">let</span> <span class="cm-def">i</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>; <span class="cm-variable-2">i</span><span class="cm-operator">&lt;</span><span class="cm-variable-2">s</span>.<span class="cm-property">length</span>; <span class="cm-variable-2">i</span><span class="cm-operator">++</span>){
+              <span class="cm-keyword">if</span> (<span class="cm-variable">ns</span>.<span class="cm-property">indexOf</span>(<span class="cm-variable">ns</span>[<span class="cm-variable-2">i</span>]) <span class="cm-operator">===</span> <span class="cm-variable">ns</span>.<span class="cm-property">lastIndexOf</span>(<span class="cm-variable">ns</span>[<span class="cm-variable-2">i</span>])) {<span class="cm-keyword">return</span> <span class="cm-variable-2">s</span>[<span class="cm-variable-2">i</span>]}
+            }
+            <span class="cm-keyword">return</span> <span class="cm-string">''</span>
+          }</code></pre>
+        `
     },
     {
         title: "RGB To Hex Conversion",
@@ -44,7 +80,34 @@ const data = [
         source: {
             short: 'codewars',
             url: 'https://www.codewars.com/kata/513e08acc600c94f01000001'
-        }
+        },
+        answer: `
+        <pre><code class="mb-5px" data-language="javascript"><span class="cm-keyword">function</span> <span class="cm-def">rgb</span>(<span class="cm-def">r</span>, <span class="cm-def">g</span>, <span class="cm-def">b</span>){
+            <span class="cm-keyword">let</span> <span class="cm-def">alpha</span> <span class="cm-operator">=</span> {
+              <span class="cm-number cm-property">10</span>: <span class="cm-string">'A'</span>,
+              <span class="cm-number cm-property">11</span>: <span class="cm-string">'B'</span>,
+              <span class="cm-number cm-property">12</span>: <span class="cm-string">'C'</span>,
+              <span class="cm-number cm-property">13</span>: <span class="cm-string">'D'</span>,
+              <span class="cm-number cm-property">14</span>: <span class="cm-string">'E'</span>,
+              <span class="cm-number cm-property">15</span>: <span class="cm-string">'F'</span>,
+            };
+            <span class="cm-keyword">let</span> <span class="cm-def">answer</span> <span class="cm-operator">=</span> <span class="cm-string">''</span>;
+            <span class="cm-keyword">let</span> <span class="cm-def">arr</span> <span class="cm-operator">=</span> [<span class="cm-variable-2">r</span>, <span class="cm-variable-2">g</span>, <span class="cm-variable-2">b</span>]
+        
+            <span class="cm-keyword">for</span> (<span class="cm-keyword">let</span> <span class="cm-def">c</span> <span class="cm-keyword">of</span> <span class="cm-variable-2">arr</span>){
+              <span class="cm-keyword">if</span> (<span class="cm-variable-2">c</span> <span class="cm-operator">&lt;</span> <span class="cm-number">0</span>) {<span class="cm-variable-2">answer</span> <span class="cm-operator">+=</span> <span class="cm-string">'00'</span>}
+              <span class="cm-keyword">else</span> <span class="cm-keyword">if</span> (<span class="cm-variable-2">c</span> <span class="cm-operator">&gt;</span> <span class="cm-number">255</span>) {<span class="cm-variable-2">answer</span> <span class="cm-operator">+=</span> <span class="cm-string">'FF'</span>}
+              <span class="cm-keyword">else</span> {
+                <span class="cm-keyword">let</span> <span class="cm-def">first</span> <span class="cm-operator">=</span> <span class="cm-variable">Math</span>.<span class="cm-property">floor</span>(<span class="cm-variable-2">c</span><span class="cm-operator">/</span><span class="cm-number">16</span>);
+                <span class="cm-keyword">let</span> <span class="cm-def">second</span> <span class="cm-operator">=</span> <span class="cm-variable-2">c</span><span class="cm-operator">-</span>(<span class="cm-variable-2">first</span><span class="cm-operator">*</span><span class="cm-number">16</span>);
+                <span class="cm-keyword">if</span> (<span class="cm-variable-2">alpha</span>[<span class="cm-variable-2">first</span>]){<span class="cm-variable-2">first</span> <span class="cm-operator">=</span> <span class="cm-variable-2">alpha</span>[<span class="cm-variable-2">first</span>]}; 
+                <span class="cm-keyword">if</span> (<span class="cm-variable-2">alpha</span>[<span class="cm-variable-2">second</span>]){<span class="cm-variable-2">second</span> <span class="cm-operator">=</span> <span class="cm-variable-2">alpha</span>[<span class="cm-variable-2">second</span>]}; 
+                <span class="cm-variable-2">answer</span> <span class="cm-operator">+=</span> <span class="cm-string-2">\` \${</span><span class="cm-variable-2">first</span><span class="cm-string-2">}</span><span class="cm-string-2"> \${</span><span class="cm-variable-2">second</span><span class="cm-string-2">}</span><span class="cm-string-2">\`</span>; 
+              }
+            }
+            <span class="cm-keyword">return</span> <span class="cm-variable-2">answer</span>
+        } </code></pre>
+        `
     },
     {
         title: "Duplicate Encoder",
@@ -56,7 +119,20 @@ const data = [
         source: {
             short: 'codewars',
             url: 'https://www.codewars.com/kata/54b42f9314d9229fd6000d9c'
-        }
+        },
+        answer: `
+        <pre><code class="mb-5px" data-language="javascript"><span class="cm-keyword">function</span> <span class="cm-def">duplicateEncode</span>(<span class="cm-def">word</span>){
+            <span class="cm-keyword">return</span> <span class="cm-variable-2">word</span>
+              .<span class="cm-property">toLowerCase</span>()
+              .<span class="cm-property">split</span>(<span class="cm-string">''</span>)
+              .<span class="cm-property">map</span>(
+                (<span class="cm-def">v</span>,<span class="cm-def">i</span>,<span class="cm-def">a</span>)<span class="cm-operator">=&gt;</span>{
+                  <span class="cm-keyword">if</span> (<span class="cm-variable-2">a</span>.<span class="cm-property">indexOf</span>(<span class="cm-variable-2">v</span>) <span class="cm-operator">==</span> <span class="cm-variable-2">a</span>.<span class="cm-property">lastIndexOf</span>(<span class="cm-variable-2">v</span>)) {<span class="cm-keyword">return</span> <span class="cm-string">'('</span> } <span class="cm-keyword">else</span> {<span class="cm-keyword">return</span> <span class="cm-string">')'</span>}
+                }
+              )
+              .<span class="cm-property">join</span>(<span class="cm-string">''</span>)
+        }</code></pre>
+        `
     },
     {
         title: "Valid Braces",
