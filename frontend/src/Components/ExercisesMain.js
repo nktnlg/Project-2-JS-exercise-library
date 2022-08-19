@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Spacer, Wrap, WrapItem } from '@chakra-ui/react';
+import { Box, Flex, Heading, Spacer, Wrap, WrapItem } from '@chakra-ui/react';
 import { useState } from 'react';
 import data from '../MockDB/exercises';
 import Exercise from './Exercise';
@@ -10,39 +10,45 @@ import ExerciseLabel from './ExerciseLabel';
 
 const ExercisesMain = () => {
 
-    const [selected, setSelected] = useState({title: "select an exercise"})
+    const [labelsHeight, setLabelsHeight] = useState('85%')
+    const [selected, setSelected] = useState(null)
     const exercises = data.concat(data)
     //HTML
     return (
         <>
+        {/* Title + Exercise name */}
+            <Box h={'15%'}>
             <Heading as='h1' size='2xl' p={2}>
                 JS Exercises
             </Heading>
-            <Heading as='h2' size='lg' p={2}>
+            {selected ? (<Heading as='h2' size='lg' p={2}>
                 <i>{selected.title}</i>
-            </Heading>
+            </Heading>):<></>}
+            </Box>
 
-            <Box borderBottom='2px' borderColor='gray.200' h={580}>
+        {/* Explanation  + answer */}
+            {selected? (<Box borderBottom='2px' borderColor='gray.200' h={'60%'}>
                 <Flex>
                     <Spacer/>
                     {/* Left Block: */}
-                    <Exercise/>
+                    <Exercise selected={selected} />
 
                     {/* Center Line: */}
                     <Spacer borderRight='2px' borderColor='gray.200'/>
                     <Spacer/>
 
                     {/* Right Block: */}
-                    <ExerciseExplanation/>
+                    <ExerciseExplanation selected={selected}/>
                     <Spacer/>
                 </Flex>
-            </Box>
-            
-            <Box p={5} overflowY={"scroll"} h={"272"}>
+            </Box>):(<></>)}
+
+        {/* Exercises labels */}
+            <Box p={5} overflowY={"scroll"} h={labelsHeight}>
                 {exercises ? (
                     <Wrap>
                         {exercises.map((label)=>(
-                            <WrapItem >
+                            <WrapItem p={6} onClick={()=>{setSelected(label); setLabelsHeight('25%')}}>
                             <ExerciseLabel label={label}/>
                         </WrapItem>
                         ))}
