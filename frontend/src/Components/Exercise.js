@@ -1,15 +1,19 @@
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Flex, Input, Textarea, Text} from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Markup } from "react-render-markup";
 
 const Exercise = ({selected}) => {
 
- 
-    
-    
-    const [outputAnswer, setOutputAnswer] = useState('');
     const [inputVal, setInputVal] = useState('');
     const [outputVal, setOutputVal] = useState('');
+    const [outputAnswer, setOutputAnswer] = useState('');
+
+    useEffect(()=>{
+        setInputVal('');
+        setOutputVal('');
+        setOutputAnswer('');
+    }, [selected]);
+    
 
     const typingHandler = (e) => {
         setInputVal(e.target.value)
@@ -17,7 +21,7 @@ const Exercise = ({selected}) => {
 
     const onTry = () => {
         setOutputVal(inputVal);
-        setOutputAnswer(selected.code(inputVal));
+        setOutputAnswer(selected.code(...argSplit(inputVal)));
         setInputVal('');
         document.getElementById("JS-exerciseCurrent").removeAttribute("disabled");
         document.getElementById("JS-exerciseCurrent").focus();
@@ -27,6 +31,10 @@ const Exercise = ({selected}) => {
         document.getElementById("JS-exerciseCurrent").setAttribute("disabled", true)
     };
     
+    function argSplit(string){
+        return string.split(';');
+    }
+
     //HTML
     return (
         <Box w='48%' h='580' overflowY={"scroll"} p={4}>
@@ -35,6 +43,7 @@ const Exercise = ({selected}) => {
                             <Text><label for='JS-exerciseInput'>Input:</label></Text> 
                             <Input 
                             id='JS-exerciseInput' 
+                            autocomplete="off"
                             variant='flushed' 
                             mx={2} 
                             onChange={typingHandler} 
@@ -46,12 +55,15 @@ const Exercise = ({selected}) => {
                     <Flex py={2} w='100%' textAlign={'left'}>
                         <Text h='10'><label mb="8px" for='JS-exerciseOutput'>Output:</label></Text> 
                         <Input 
-                            variant='flushed' 
+                            variant='flushed'
                             id='JS-exerciseCurrent' 
+                            autocomplete="off" 
+                            cursor={'default'}
                             mx={2} value={outputVal} 
                             onClick={()=>{disableOutput()}}/>
                     </Flex>
                     <Textarea id='JS-exerciseOutput'
+                            cursor={'default'}
                             value={outputAnswer}
                             size="sm"
                             maxH={350}
@@ -61,9 +73,11 @@ const Exercise = ({selected}) => {
                     />
                 </Box>
                 {/* Show item: */}
-                <Box my={4} p={2} bg={'rgb(240, 240, 240)'} borderRadius='15px'>
-                    <Accordion allowToggle 
-                    bg={'rgb(226, 232, 240)'}>
+                <Box my={4} p={2} bg={'rgb(240, 240, 240)'} borderRadius='15px' >
+                    <Accordion 
+                    allowToggle 
+                    bg={'rgb(226, 232, 240)'}
+                    >
                                 <AccordionItem borderRadius={'15px'}>
                                     <h2>
                                     <AccordionButton>
@@ -73,7 +87,7 @@ const Exercise = ({selected}) => {
                                         <AccordionIcon />
                                     </AccordionButton>
                                     </h2>
-                                    <AccordionPanel pb={4} overflowX={"scroll"}>
+                                    <AccordionPanel pb={4} overflowX={"scroll"} >
                                     <Text textAlign={'left'} fontSize={16}> 
                                         <Markup markup={selected.answer}/>
                                     </Text>

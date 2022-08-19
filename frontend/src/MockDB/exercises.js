@@ -89,7 +89,14 @@ const data = [
             }
             <span class="cm-keyword">return</span> <span class="cm-string">''</span>
           }</code></pre>
-        `
+        `,
+        code(s) {
+          let ns = s.toLowerCase()
+          for (let i = 0; i<s.length; i++){
+            if (ns.indexOf(ns[i]) === ns.lastIndexOf(ns[i])) {return s[i]}
+          }
+          return 'all characters were repeated'
+        }
     },
     {
         title: "RGB To Hex Conversion",
@@ -130,7 +137,33 @@ const data = [
             }
             <span class="cm-keyword">return</span> <span class="cm-variable-2">answer</span>
         } </code></pre>
-        `
+        `,
+        code(r, g, b){
+          let alpha = {
+            10: 'A',
+            11: 'B',
+            12: 'C',
+            13: 'D',
+            14: 'E',
+            15: 'F',
+          };
+          let answer = '';
+          let arr = [r, g, b]
+      
+          for (let c of arr){
+            if (c < 0) {answer += '00'}
+            else if (c > 255) {answer += 'FF'}
+            else {
+              let first = Math.floor(c/16);
+              let second = c-(first*16);
+              if (alpha[first]){first = alpha[first]}; 
+              if (alpha[second]){second = alpha[second]}; 
+              answer += `${first}${second}`; 
+            }
+          }
+          
+          return answer
+      } 
     },
     {
         title: "Duplicate Encoder",
@@ -155,7 +188,18 @@ const data = [
               )
               .<span class="cm-property">join</span>(<span class="cm-string">''</span>)
         }</code></pre>
-        `
+        `,
+        code(word){
+          return word
+            .toLowerCase()
+            .split('')
+            .map(
+              (v,i,a)=>{
+                if (a.indexOf(v) == a.lastIndexOf(v)) {return '(' } else {return ')'}
+              }
+            )
+            .join('')
+      }
     },
     {
         title: "Valid Braces",
