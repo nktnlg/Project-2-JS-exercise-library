@@ -8,8 +8,8 @@ const ExerciseExplanation = ({selected}) => {
     
     //HTML
     return (
-        <Box w='48%' h='580' overflowY={"scroll"}>
-                        <Text textAlign={'left'} py={2} id="explanation">
+        <Box overflowY={"scroll"} px={8} >
+                        <Text textAlign={'left'} id="explanation">
 
                             <Markup markup={selected.explanation}/>
 
