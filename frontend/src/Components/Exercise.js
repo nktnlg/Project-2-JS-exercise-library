@@ -37,7 +37,7 @@ const Exercise = ({selected}) => {
 
     //HTML
     return (
-        <Box w='48%' h='580' overflowY={"scroll"} p={4}>
+        <Box overflowY={"scroll"} p={4} >
                 {/* Input: */}
                 <Flex p={2} w='100%' textAlign={'left'} bg={'rgb(240, 240, 240)'} borderRadius='15px'>
                             <Text><label for='JS-exerciseInput'>Input:</label></Text> 
