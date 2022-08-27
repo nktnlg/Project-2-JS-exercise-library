@@ -21,6 +21,7 @@ const data = [
             short: 'codewars',
             url: 'https://www.codewars.com/kata/5277c8a221e209d3f6000b56'
         },
+        inputExample: '{[()]}',
         answer: `
         <pre><code class="mb-5px" data-language="javascript"><span class="cm-keyword">function</span> <span class="cm-def">validBraces</span>(<span class="cm-def">braces</span>){
             <span class="cm-keyword">let</span> <span class="cm-def">count</span> <span class="cm-operator">=</span> [<span class="cm-number">0</span>,<span class="cm-number">0</span>,<span class="cm-number">0</span>];
@@ -46,6 +47,28 @@ const data = [
             <span class="cm-keyword">if</span> (<span class="cm-variable-2">count</span>[<span class="cm-number">0</span>]<span class="cm-operator">===</span><span class="cm-number">0</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable-2">count</span>[<span class="cm-number">1</span>]<span class="cm-operator">===</span><span class="cm-number">0</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable-2">count</span>[<span class="cm-number">2</span>]<span class="cm-operator">===</span><span class="cm-number">0</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-operator">!</span><span class="cm-variable-2">fail</span>) {<span class="cm-keyword">return</span> <span class="cm-atom">true</span>} <span class="cm-keyword">else</span>{<span class="cm-keyword">return</span> <span class="cm-atom">false</span>}
         };</code></pre>
         `,
+        arg: 'braces',
+        hardcode: `let count = [0,0,0];
+        let stat = [];
+        let fail = false;
+        let arr = braces.split('');
+        
+        for (let v of arr) {
+              if (v === '(' ){count[0]++; stat.push('1')};
+              if (v === '[' ){count[1]++; stat.push('2')};
+              if (v === '{' ){count[2]++; stat.push('3')};
+              if (v === ')' ){
+                if (count[0]>0 && stat[stat.length-1]=='1'){count[0]--; stat.pop()}else{fail=true; break}
+              };
+              if (v === ']' ){
+                if (count[1]>0 && stat[stat.length-1]==='2'){count[1]--; stat.pop()}else{fail=true; break}
+              };
+              if (v === '}' ){
+                if (count[2]>0 && stat[stat.length-1]==='3'){count[2]--; stat.pop()}else{fail=true; break}
+              };
+        }
+      
+        if (count[0]===0 && count[1]===0 && count[2]===0 && !fail) {return true} else{return false}`,
         code(braces) {
             let count = [0,0,0];
             let stat = [];
@@ -81,6 +104,7 @@ const data = [
             short: 'codewars',
             url: 'https://www.codewars.com/kata/52bc74d4ac05d0945d00054e'
         },
+        inputExample: 'abcabd',
         answer: `
         <pre><code class="mb-5px" data-language="javascript"><span class="cm-keyword">function</span> <span class="cm-def">firstNonRepeatingLetter</span>(<span class="cm-def">s</span>) {
             <span class="cm-variable">ns</span> <span class="cm-operator">=</span> <span class="cm-variable-2">s</span>.<span class="cm-property">toLowerCase</span>()
@@ -90,6 +114,12 @@ const data = [
             <span class="cm-keyword">return</span> <span class="cm-string">''</span>
           }</code></pre>
         `,
+        arg: 's',
+        hardcode: `let ns = s.toLowerCase()
+        for (let i = 0; i<s.length; i++){
+          if (ns.indexOf(ns[i]) === ns.lastIndexOf(ns[i])) {return s[i]}
+        }
+        return 'all characters were repeated'`,
         code(s) {
           let ns = s.toLowerCase()
           for (let i = 0; i<s.length; i++){
@@ -111,6 +141,7 @@ const data = [
             short: 'codewars',
             url: 'https://www.codewars.com/kata/513e08acc600c94f01000001'
         },
+        inputExample: '255, 255, 255',
         answer: `
         <pre><code class="mb-5px" data-language="javascript"><span class="cm-keyword">function</span> <span class="cm-def">rgb</span>(<span class="cm-def">r</span>, <span class="cm-def">g</span>, <span class="cm-def">b</span>){
             <span class="cm-keyword">let</span> <span class="cm-def">alpha</span> <span class="cm-operator">=</span> {
@@ -138,6 +169,34 @@ const data = [
             <span class="cm-keyword">return</span> <span class="cm-variable-2">answer</span>
         } </code></pre>
         `,
+        arg: "r, g, b",
+        hardcode: `let alpha = {
+          10: 'A',
+          11: 'B',
+          12: 'C',
+          13: 'D',
+          14: 'E',
+          15: 'F',
+        };
+        let answer = '';
+        let arr = [r, g, b]
+    
+        for (let c of arr){
+          if (c < 0) {answer += '00'}
+          else if (c > 255) {answer += 'FF'}
+          else {
+            let first = Math.floor(c/16);
+            let second = c-(first*16);
+            if (alpha[first]){first = alpha[first]}; 
+            if (alpha[second]){second = alpha[second]}; 
+            first.toString();
+            second.toString();
+            answer += first; 
+            answer += second; 
+          }
+        }
+        
+        return answer`,
         code(r, g, b){
           let alpha = {
             10: 'A',
@@ -158,7 +217,10 @@ const data = [
               let second = c-(first*16);
               if (alpha[first]){first = alpha[first]}; 
               if (alpha[second]){second = alpha[second]}; 
-              answer += `${first}${second}`; 
+              first.toString();
+              second.toString();
+              answer += first; 
+              answer += second; 
             }
           }
           
@@ -176,6 +238,7 @@ const data = [
             short: 'codewars',
             url: 'https://www.codewars.com/kata/54b42f9314d9229fd6000d9c'
         },
+        inputExample: 'millennia',
         answer: `
         <pre><code class="mb-5px" data-language="javascript"><span class="cm-keyword">function</span> <span class="cm-def">duplicateEncode</span>(<span class="cm-def">word</span>){
             <span class="cm-keyword">return</span> <span class="cm-variable-2">word</span>
@@ -243,7 +306,7 @@ const data = [
         }
     },
     {
-        title: "LONG LONG First non-repeating character",
+        title: "LONG LONG First non-repeating character a a a aaasfadfsd asfadfsaef",
         explanation: `<p>Write a function named <code>first_non_repeating_letter</code> that takes a string input, and returns the first character that is not repeated anywhere in the string.</p>
         <p>For example, if given the input <code>'stress'</code>, the function should return <code>'t'</code>, since the letter <em>t</em> only occurs once in the string, and occurs first in the string.</p>
         <p>As an added challenge, upper- and lowercase letters are considered the <strong>same character</strong>, but the function should return the correct case for the initial letter.  For example, the input <code>'sTreSS'</code> should return <code>'T'</code>.</p>
@@ -258,7 +321,7 @@ const data = [
         <p>If a string contains <em>all repeating characters</em>, it should return an empty string (<code>""</code>) or <code>None</code> -- see sample tests.</p>
         `,
         source: {
-            short: 'codewars',
+            short: 'codewarscodewarscodewarscodewarscodewarscodewars',
             url: 'https://www.codewars.com/kata/52bc74d4ac05d0945d00054e'
         }
     },
