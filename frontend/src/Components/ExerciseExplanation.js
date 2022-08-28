@@ -20,8 +20,8 @@ const ExerciseExplanation = ({selected}) => {
                             </Code></>
                             ): <></>}
 
-                            {selected.source? (
-                            <Text>Source: <Link href={selected.source.url}>{selected.source.short}</Link></Text>
+                            {selected.source_short? (
+                            <Text>Source: <Link href={selected.source_url} target="_blank">{selected.source_short}</Link></Text>
                             ): <></>}
                         
                         </Text>

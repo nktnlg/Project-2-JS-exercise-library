@@ -29,7 +29,7 @@ const Exercise = ({selected}) => {
 
         try {
             const args = argSplit(selected.arg)
-            const func = Function(args.flat(), selected.hardcode)
+            const func = Function(args.flat(), selected.code)
             setOutputAnswer(func(...argSplit(inputVal)));
         } catch (error) {
             setOutputAnswer('failed to execute')
@@ -63,7 +63,7 @@ const Exercise = ({selected}) => {
                             mx={2} 
                             onChange={typingHandler} 
                             value={inputVal}
-                            placeholder={`E.g. ${selected.inputExample}`}
+                            placeholder={`E.g. ${selected.input_example}`}
                             
                             />
                             <Button id='JS-exerciseInputSubmit' w={'70px'} onClick={()=>{onTry()}} >Try</Button>

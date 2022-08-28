@@ -1,5 +1,5 @@
-import { Box, Flex, Heading, Spacer, Wrap, WrapItem, Text } from '@chakra-ui/react';
-import { useState } from 'react';
+import { Box, Heading, Wrap, WrapItem } from '@chakra-ui/react';
+import { useState, useEffect} from 'react';
 import data from '../MockDB/exercises';
 import Exercise from './Exercise';
 import ExerciseExplanation from './ExerciseExplanation';
@@ -18,9 +18,23 @@ import {
 
 const ExercisesMain = () => {
 
-    const [labelsHeight, setLabelsHeight] = useState('85%')
+    const [exercises, setExercises] = useState([])
     const [selected, setSelected] = useState(null)
-    const exercises = data.concat(data)
+
+    const getExercises = async ()=>{
+        try {
+            const response = await fetch("http://localhost:5000/exercises");
+            const jsonData = await response.json();
+            setExercises(jsonData)
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+    useEffect(()=>{
+        getExercises()
+    }, []);
+
     //HTML
     return (
         <ReflexContainer orientation="horizontal" >
@@ -66,7 +80,7 @@ const ExercisesMain = () => {
                             {exercises ? (
                                     <Wrap>
                                         {exercises.map((label)=>(
-                                            <WrapItem p={6} onClick={()=>{setSelected(label); setLabelsHeight('25%')}}>
+                                            <WrapItem p={6} onClick={()=>{setSelected(label)}}>
                                                 <ExerciseLabel label={label}/>
                                             </WrapItem>
                                         ))}
