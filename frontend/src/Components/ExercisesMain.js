@@ -21,18 +21,18 @@ const ExercisesMain = () => {
     const [exercises, setExercises] = useState([])
     const [selected, setSelected] = useState(null)
 
-    const getExercises = async ()=>{
-        try {
-            const response = await fetch("http://localhost:5000/exercises");
-            const jsonData = await response.json();
-            setExercises(jsonData)
-        } catch (error) {
-            console.log(error.message)
-        }
-    }
+    // const getExercises = async ()=>{
+    //     try {
+    //         const response = await fetch("http://localhost:5000/exercises");
+    //         const jsonData = await response.json();
+    //         setExercises(jsonData)
+    //     } catch (error) {
+    //         console.log(error.message)
+    //     }
+    // }
 
     useEffect(()=>{
-        getExercises()
+        setExercises(data)
     }, []);
 
     //HTML

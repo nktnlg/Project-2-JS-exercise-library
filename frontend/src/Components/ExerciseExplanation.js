@@ -14,7 +14,7 @@ const ExerciseExplanation = ({selected}) => {
                             <Markup markup={selected.explanation}/>
 
                             {selected.examples? (<>
-                            <b>Examples:</b>
+                            <p><b>Examples:</b></p>
                             <Code w={'100%'} p={4}>
                             <Markup markup={selected.examples}/>
                             </Code></>

@@ -21,6 +21,32 @@ app.get('/exercises', async (req, res)=>{
         console.error(error.message);
     }
 })
+//2) create exercise
+app.post('/exercises', async (req, res)=>{
+    try {
+        const {title, 
+            explanation, 
+            examples, 
+            source_short, 
+            source_url, 
+            input_example, 
+            arg, 
+            code} = req.body
+        const newEx =  await pool
+            .query("INSERT INTO exercises (title, explanation, examples, source_short, source_url, input_example, arg, code) VALUES($1, $2, $3, $4, $5, $6, $7, $8,)",
+            [title, 
+            explanation, 
+            examples, 
+            source_short, 
+            source_url, 
+            input_example, 
+            arg, 
+            code])
+            res.json(newEx.rows[0])
+    } catch (error) {
+        console.error(error.message);
+    }
+})
 
 //END ROUTES
 
