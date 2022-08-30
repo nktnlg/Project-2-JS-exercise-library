@@ -19,7 +19,9 @@ const Exercise = ({selected}) => {
     const typingHandler = (e) => {
         setInputVal(e.target.value)
     };
-
+    const disableOutput = ()=>{
+        document.getElementById("JS-exerciseCurrent").setAttribute("disabled", true)
+    };
     
    
 
@@ -27,24 +29,48 @@ const Exercise = ({selected}) => {
         
         setOutputVal(inputVal);
 
-        try {
-            const args = argSplit(selected.arg)
-            const func = Function(args.flat(), selected.hardcode)
-            setOutputAnswer(func(...argSplit(inputVal)));
-        } catch (error) {
-            setOutputAnswer('failed to execute')
-            console.log(error.message)
-        }
-
+        executeFunction(inputVal)
+        
         setInputVal('');
         document.getElementById("JS-exerciseCurrent").removeAttribute("disabled");
         document.getElementById("JS-exerciseCurrent").focus();
     };
 
-    const disableOutput = ()=>{
-        document.getElementById("JS-exerciseCurrent").setAttribute("disabled", true)
-    };
+
+    function executeFunction(input){
+        try {
+            let args = null
+            if(selected.input_type !== 'str') {
+                 args = input.split(',');
+            }else{
+                 args = input;
+            }
+            console.log(...args)
+
+            let funcArgs = selected.arg.split(',');
+            console.log(funcArgs)
+            const func = Function(funcArgs.flat(), selected.code)
+
+            switch(selected.input_type){
+                case 'str': setOutputAnswer(func(args));
+                break
+                case 'multi_str': setOutputAnswer(func(...args));
+                break
+                case 'arr': setOutputAnswer(func(args));
+                break
+                default: setOutputAnswer('ERR: input_type unknown');
+                break
+            };
+            
+            
+        } catch (error) {
+            setOutputAnswer('failed to execute')
+            console.log(error.message)
+        }
+    }
     
+    
+
     function argSplit(string){
         return string.split(',');
     }
@@ -63,7 +89,7 @@ const Exercise = ({selected}) => {
                             mx={2} 
                             onChange={typingHandler} 
                             value={inputVal}
-                            placeholder={`E.g. ${selected.inputExample}`}
+                            placeholder={`E.g. ${selected.input_example}`}
                             
                             />
                             <Button id='JS-exerciseInputSubmit' w={'70px'} onClick={()=>{onTry()}} >Try</Button>

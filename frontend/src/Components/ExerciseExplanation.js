@@ -14,14 +14,14 @@ const ExerciseExplanation = ({selected}) => {
                             <Markup markup={selected.explanation}/>
 
                             {selected.examples? (<>
-                            <b>Examples:</b>
+                            <p><b>Examples:</b></p>
                             <Code w={'100%'} p={4}>
                             <Markup markup={selected.examples}/>
                             </Code></>
                             ): <></>}
 
-                            {selected.source? (
-                            <Text>Source: <Link href={selected.source.url}>{selected.source.short}</Link></Text>
+                            {selected.source_short? (
+                            <Text>Source: <Link href={selected.source_url} target="_blank">{selected.source_short}</Link></Text>
                             ): <></>}
                         
                         </Text>
